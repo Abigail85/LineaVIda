@@ -321,8 +321,9 @@
         /* Editar proveedor */
         $('body').on('click', '.editar', function() {
             var proveedor_id = $(this).data('id');
+            
             $.get('proveedores/' + proveedor_id + '/edit', function(data) {
-                $('operacion').val("editar");
+                $('#operacion').val("editar");
                 $('#btn-update').val("Update");
                 $('#btn-save').prop('disabled', false);
                 $('#btn-save').prop('hidden', false);

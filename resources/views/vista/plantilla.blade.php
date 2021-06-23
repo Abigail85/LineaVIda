@@ -88,7 +88,7 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Facturas:</h6>
-                        <a class="collapse-item" href="facturas.html">Gestionar Facturas</a>
+                        <a class="collapse-item" href="{{ route('facturas.index') }}">Gestionar Facturas</a>
 
                     </div>
                 </div>
@@ -333,7 +333,7 @@
     <script>
         
         $(document).ready(function() {
-            $(".imagendecarga").fadeOut(500);;
+            $(".imagendecarga").fadeOut(2000);;
         });
     </script>
     @yield('scripting')

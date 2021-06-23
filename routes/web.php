@@ -11,22 +11,14 @@
 |
 */
 
-use App\proveedor;
-//use Illuminate\Routing\Route;
+// use App\proveedor;
+// //use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/proveedores', function () {
-    $proveedores=App\proveedor::orderBy('nombreProveedor')->paginate(10);
-    
-    
-    
-    
-    
-    return view('/vista/proveedores')->with("proveedores",$proveedores);
-});
+
 Route::get('/plantilla', function () {
     
     return view('/vista/plantilla');
@@ -51,3 +43,17 @@ Route::get('lotes/{id}/show/','LoteController@show');
 
 Route::resource('especificacionlotes','especificacionLoteController');
 Route::post('especificacionlotes/eliminar',["as"=>"especificacionlotes.eliminar", "uses"=>"especificacionLoteController@eliminar"]);
+Route::post('especificacionlotes/save','especificacionLoteController@store');
+Route::get('especificacionlotes/{id}/edit/','especificacionLoteController@edit');
+Route::get('especificacionlotes/{id}/show/','especificacionLoteController@show');
+
+Route::resource('facturas','FacturaController');
+Route::post('facturas/eliminar',["as"=>"facturas.eliminar", "uses"=>"FacturaController@eliminar"]);
+Route::post('facturas/save','FacturaController@store');
+Route::get('facturas/{id}/edit/','FacturaController@edit');
+Route::get('facturas/{id}/show/','FacturaController@show');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

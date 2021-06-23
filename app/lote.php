@@ -8,7 +8,7 @@ use App\especificacionlote;
 class lote extends Model
 {
     
-    protected $table="lotes";
+    protected $table="lote";
     protected $primaryKey = "idLote";
     public $timestamps = false;
 
@@ -19,7 +19,7 @@ class lote extends Model
         'fechaInicioLote',
         'fechaEntregaLote',
         'descripcionLotes',
-        'cantidadTotalLotes'
+        'loteen'
     ];
 
     public function proveedor()
@@ -28,6 +28,6 @@ class lote extends Model
     }
     public function especificaciones()
     {
-        return $this->hasMany('App\especificacionlote','idLote','idLotes');
+        return $this->hasMany('App\especificacionlote','idLote','idLote');
     }
 }

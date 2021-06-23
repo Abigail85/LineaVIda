@@ -11,6 +11,7 @@ class Color extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'idColor',
         'color'
 
     ];

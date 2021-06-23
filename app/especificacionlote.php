@@ -16,18 +16,15 @@ protected $fillable = [
     'idLote',
     'idColor',
     'cantidadxxs',
-    'cantidads',
+    'cantidadxs',
     'cantidads',
     'cantidadm',
     'cantidadl',
     'cantidadxl',
     'cantidad2xl',
-    'cantidad3xl',
-    'cantidad'
+    'cantidad3xl'
+
 ];
-
-
-
 
 public function lote(){
     return $this->belongsTo('App\lotes','idLote','idLote');

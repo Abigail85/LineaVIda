@@ -19,9 +19,9 @@ Lotes
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>idLote</th>
                         <th>Nit</th>
                         <th>Proveedor</th>
-                        <th>Valor</th>
                         <th>Fecha ingreso</th>
                         <th>Fecha inicio</th>
                         <th>Fecha entrega</th>
@@ -29,8 +29,6 @@ Lotes
                         <th>Cantidad total</th>
                         <th>Descripción</th>
                         <th>Lote en:</th>
-                        <th>Talla</th>
-                        <th>Color</th>
 
                         <th>Acciones</th>
                     </tr>
@@ -39,33 +37,56 @@ Lotes
                 <tbody>
                     @foreach($lotes as $lote)
                     <tr>
+                        <td>{{ $lote->idLote }}</td>
                         <td>{{ $lote->idNitProveedor }}</td>
                         <td>{{ $lote->proveedor()->getresults()->nombreProveedor}}</td>
-                        <td>{{ $lote->valor}}</td>
                         <td>{{ $lote->fechaIngresoLote}}</td>
-                        <td>{{ $lote->fechaIngresoLote}}</td>
-                        <td>{{ $lote->fechaIngresoLote}}</td>
-                        <td>61 89 45</td>
-                        <td>{{ $lote->cantidadTotalLotes}}</td>
-                        <td>{{ $lote->descripcionLotes}}</td>
-                        <td>Bodega</td>
-                        <td>L</td>
-                        <td class="muestracolor">
-                            <div class="muestra bg-gradient-primary">
+                        <td>{{ $lote->fechaInicioLote}}</td>
+                        <td>{{ $lote->fechaEntregaLote}}</td>
+                        <td>
 
-                            </div>
+                            <?php $tot = 0 ?>
+                            @foreach ($lote->especificaciones()->getresults() as $especificacion)
+
+                            {{$especificacion->color()->getresults()->color}} &nbsp;
+                            xxs:{{$especificacion->cantidadxxs}} &nbsp;
+                            xs:{{$especificacion->cantidadxs}} &nbsp;
+                            s:{{$especificacion->cantidads}} &nbsp;
+                            m:{{$especificacion->cantidadm}} &nbsp;
+                            l:{{$especificacion->cantidadl}} &nbsp;
+                            xl:{{$especificacion->cantidadxl}} &nbsp;
+                            2xl:{{$especificacion->cantidad2xl}} &nbsp;
+                            3xl:{{$especificacion->cantidad3xl}} &nbsp;
+                            <?php
+                            $tot += ($especificacion->cantidadxxs +
+                                $especificacion->cantidadxs +
+                                $especificacion->cantidads +
+                                $especificacion->cantidadm +
+                                $especificacion->cantidadl +
+                                $especificacion->cantidadxl +
+                                $especificacion->cantidad2xl +
+                                $especificacion->cantidad3xl);
+                            ?>
+                            <br>
+                            <hr>
+                            @endforeach
+
                         </td>
+                        <td>{{ $tot}}</td>
+                        <td>{{ $lote->descripcionLotes}}</td>
+                        <td>{{ $lote->loteen}}</td>
+
 
                         <td>
                             <div class="row">
 
-                                <a href="#" class="btn btn-success btn-circle btn-sm" data-toggle="modal" data-target="#createeditModal">
+                                <a href="#" class="btn btn-success btn-circle btn-sm editar" data-id="{{ $lote-> idLote}}" data-toggle="modal" data-target="#createeditModal">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-warning btn-circle btn-sm" data-toggle="modal" data-target="#detallesModal">
+                                <a href="#" class="btn btn-warning btn-circle btn-sm detalle" data-id="{{ $lote-> idLote}}" data-toggle="modal" data-target="#detallesModal">
                                     <i class="fas fa-search"></i>
                                 </a>
-                                <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#eliminarModal">
+                                <a href="#" class="btn btn-danger btn-circle btn-sm eliminar" data-id="{{ $lote-> idLote}}" data-toggle="modal" data-target="#eliminarModal">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </div>
@@ -127,85 +148,63 @@ Lotes
                     <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Datos del Lote</h1>
                     </div>
-                    <form class="user">
+                    <form class="user" action="{{ route('lotes.store') }}" method="post">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                                <input type="hidden" name="operacion" id="operacion">
                         <div class="form-group">
                             <div class="">
-                            <input type="hidden" name="operacion" id="operacion">
+                                <label for="txtidlote">Id Lote</label>
+                                <input type="text" class="form-control form-control-user" id="txtidlote" name="txtidlote" placeholder="Id Lote" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
                                 <label for="txtnit">Nit</label>
-                                <input type="text" class="form-control form-control-user" id="txtnit" placeholder="Nit" readonly>
+                                <input type="text" class="form-control form-control-user" id="txtnit" name="txtnit" placeholder="Nit" readonly>
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            
+
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="selectproveedor">Proveedor</label>
                             </div>
-                                <select name="selectproveedor" id="selectproveedor" class="form-control form control-user custom-select">
-                                    <option value="">Seleccione el proveedor</option>
+                            <select name="selectproveedor" id="selectproveedor" class="form-control form control-user custom-select">
+                                <option value="">Seleccione el proveedor</option>
 
-                                    @foreach($proveedores as $proveedor)
-                                    <option value=" {{ $proveedor->idNitProveedor }} ">{{$proveedor->nombreProveedor}}</option>
-                                    @endforeach
-                                </select>
-                            
-                        </div>
-                        <div class="form-group">
-                            <label for="txtvalor">Valor</label>
-                            <input type="number" class="form-control form-control-user" id="txtvalor" placeholder="0.0" >
+                                @foreach($proveedores as $proveedor)
+                                <option label="{{ $proveedor->nombreProveedor }}" value=" {{ $proveedor->idNitProveedor }} ">{{$proveedor->nombreProveedor}}</option>
+                                @endforeach
+                            </select>
+
                         </div>
                         <div class="form-group">
                             <label for="txtfechaingreso">Fecha de Ingreso</label>
-                            <input type="date" class="form-control form-control-user" id="txtfechaingreso" placeholder="20/04/2021" >
-                            <label for="txtfechaingreso">Fecha de Inicio</label>
-                            <input type="date" class="form-control form-control-user" id="txtfechainicio" placeholder="20/04/2021" >
-                            <label for="txtfechaingreso">Fecha de Entrega</label>
-                            <input type="date" class="form-control form-control-user" id="txtfechaentrega" placeholder="20/04/2021" >
+                            <input type="date" class="form-control form-control-user" id="txtfechaingreso" name="txtfechaingreso"  placeholder="20/04/2021">
+                            <label for="txtfechainicio">Fecha de Inicio</label>
+                            <input type="date" class="form-control form-control-user" id="txtfechainicio"  name="txtfechainicio" placeholder="20/04/2021">
+                            <label for="txtfechaentrega">Fecha de Entrega</label>
+                            <input type="date" class="form-control form-control-user" id="txtfechaentrega" name="txtfechaentrega"  placeholder="20/04/2021">
                         </div>
                         <div class="form-group">
-                            <label for="txtcantidadcolortalla">Cantidad por color y talla</label>
-                            <input type="text" class="form-control form-control-user" id="txtcantidadcolortalla" placeholder="0" >
-                            <label for="txtcantidadtotal">Cantidad total</label>
-                            <input type="text" class="form-control form-control-user" id="txtcantidadtotal" placeholder="0" >
                             <label for="txtdescripcion">Descripción</label>
-                            <input type="text" class="form-control form-control-user" id="txtdescripcion" placeholder="N/A" >
-
+                            <input type="text" class="form-control form-control-user" id="txtdescripcion" name="txtdescripcion" placeholder="Descripción del lote">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputgruopselect01">Lote en:</label>
+                                <label class="input-group-text" for="selectloteen">Lote en:</label>
                             </div>
-                            <select class="custom-select  " id="txtloteen">
+                            <select class="custom-select  " id="selectloteen" name="selectloteen">
 
-                                <option value="0">Bodega</option>
-                                <option value="1">Producción</option>
-                                <option value="2">Terminación</option>
-                                <option value="3">Entregado</option>
+                                <option value="Bodega">Bodega</option>
+                                <option value="Produccion">Producción</option>
+                                <option value="Terminacion">Terminación</option>
+                                <option value="Entregado">Entregado</option>
                             </select>
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="txttalla">Talla:</label>
-                            </div>
-                            <select class="custom-select  " id="txttalla">
 
-                            <option value="XXS">XXS</option>
-                                <option value="XS">XS</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                                <option value="2XL">2XL</option>
-                                <option value="3XL">3XL</option>
-                            </select>
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <label class="input-group-text" for="color" >Color</label>
-                            </div>
-                            <input type="text" name="color" id="color" class="form-control form-control-user">
-                        </div>
-                        <input type="submmit" class="btn btn-primary btn-user btn-block" value='Guardar'>
-                        
+
+                        <button type="submmit" class="btn btn-primary btn-user btn-block">Guardar</button>
+
                         <button class="btn btn-secondary btn-user btn-block" type="button" data-dismiss="modal">Cancelar</button>
 
                     </form>
@@ -239,50 +238,56 @@ Lotes
                     <form class="user">
                         <div class="form-group">
                             <div class="">
+                                <label for="idLote">Id Lote</label>
+                                <input type="text" class="form-control form-control-user" id="txtidlote" placeholder="Id Lote" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
                                 <label for="txtnit">Nit</label>
-                                <input type="text" class="form-control form-control-user" id="txtnit" placeholder="Nit"  readonly>
+                                <input type="text" class="form-control form-control-user" id="txtnit" placeholder="Nit" readonly>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="">
                                 <label for="txtproveedor">Proveedor</label>
-                                <input type="text" class="form-control form-control-user" id="txtproveedor" placeholder="Proveedor"  readonly="readonly">
+                                <input type="text" class="form-control form-control-user" id="txtproveedor" placeholder="Proveedor" readonly="readonly">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="txtvalor">Valor</label>
-                            <input type="number" class="form-control form-control-user" id="txtvalor" placeholder="0.0" readonly="readonly">
+                            <input type="text" class="form-control form-control-user" id="txtvalor" placeholder="0.0" readonly="readonly">
                         </div>
                         <div class="form-group">
                             <label for="txtfechaingreso">Fecha de Ingreso</label>
-                            <input type="date" class="form-control form-control-user" id="txtfechaingreso" placeholder="20/04/2021"  readonly="readonly">
+                            <input type="date" class="form-control form-control-user" id="txtfechaingreso" placeholder="20/04/2021" readonly="readonly">
                             <label for="txtfechaingreso">Fecha de Inicio</label>
-                            <input type="date" class="form-control form-control-user" id="txtfechainicio" placeholder="20/04/2021"  readonly="readonly">
+                            <input type="date" class="form-control form-control-user" id="txtfechainicio" placeholder="20/04/2021" readonly="readonly">
                             <label for="txtfechaingreso">Fecha de Entrega</label>
-                            <input type="date" class="form-control form-control-user" id="txtfechaentrega" placeholder="20/04/2021"  readonly="readonly">
+                            <input type="date" class="form-control form-control-user" id="txtfechaentrega" placeholder="20/04/2021" readonly="readonly">
                         </div>
                         <div class="form-group">
                             <label for="txtcantidadcolortalla">Cantidad por color y talla</label>
                             <input type="text" class="form-control form-control-user" id="txtcantidadcolortalla" placeholder="0" readonly="readonly">
                             <label for="txtcantidadtotal">Cantidad total</label>
-                            <input type="text" class="form-control form-control-user" id="txtcantidadtotal" placeholder="0"  readonly="readonly">
+                            <input type="text" class="form-control form-control-user" id="txtcantidadtotal" placeholder="0" readonly="readonly">
                             <label for="txtdescripcion">Descripción</label>
-                            <input type="text" class="form-control form-control-user" id="txtdescripcion" placeholder="N/A"  readonly="readonly">
+                            <input type="text" class="form-control form-control-user" id="txtdescripcion" placeholder="N/A" readonly="readonly">
 
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="txtloteen">Lote en:</label>
-                            <input type="text" id="txtloteen" readonly>
+                                <input type="text" id="txtloteen" readonly>
                             </div>
-                            
+
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="txttalla">Talla:</label>
-                            <input type="text" name="" id="txttalla" readonly>
+                                <input type="text" name="" id="txttalla" readonly>
                             </div>
-                            
+
                         </div>
                         <div class="form-group">
                             <label for="color">Color</label>
@@ -330,7 +335,7 @@ Lotes
     $(document).ready(function() {
 
 
-
+        /*actualiza valor de nit del modal al cambiar el select*/
         $('#selectproveedor').on('change', function() {
             $('#txtnit').val($('#selectproveedor').val());
         });
@@ -342,28 +347,47 @@ Lotes
             $('#proveedor').trigger("reset");
             $('#operacion').val("crear");
             $('#crud-modal').modal('show');
+            $('#txtidlote').prop('readonly', '');
             $('#txtnit').prop('readonly', 'readonly');
         });
 
-        /* Editar proveedor */
+        /* Editar lote */
         $('body').on('click', '.editar', function() {
-            var proveedor_id = $(this).data('id');
-            $.get('proveedores/' + proveedor_id + '/edit', function(data) {
+            //alert("editar lote");
+            var lote_id = $(this).data('id');
+            //alert("idLote: "+lote_id);
+
+            $.get('lotes/' + lote_id + '/edit', function(data) {
+//                alert(data.idNitProveedor);
                 $('#operacion').val("editar");
                 $('#btn-update').val("Update");
                 $('#btn-save').prop('disabled', false);
                 $('#btn-save').prop('hidden', false);
-                $('#crud-modal').modal('show');
+                $('#txtidlote').val(data.idLote);
                 $('#txtnit').val(data.idNitProveedor);
-                $('#txtNombre').val(data.nombreProveedor);
-                $('#txtDireccion').val(data.direccion);
-                $('#txtTelefono').val(data.telefono);
-                $('#txtNombrePersonaCargo').val(data.encargadoProveedor);
-                //$('#txtnit').prop('readonly', 'readonly');
-                $('#txtNombre').prop('readonly', '');
-                $('#txtDireccion').prop('readonly', '');
-                $('#txtTelofono').prop('readonly', '');
-                $('#txtNombrePersonaCargo').prop('readonly', '');
+
+
+opciones=$("#selectproveedor option").each(function(){
+
+if(this.value==data.idNitProveedor)
+this.setAttribute("selected","true");
+});
+
+
+
+                // $('#txtfechaingreso').attr('value',data.fechaIngresoLote);
+                $('#txtfechaingreso').val(data.fechaIngresoLote);
+                $('#txtfechainicio').val(data.fechaInicioLote);
+                $('#txtfechaentrega').val(data.fechaEntregaLote);
+                $('#txtdescripcion').val(data.descripcionLotes);
+
+
+opciones=$("#selectloteen option").each(function(){
+console.log(this.value);
+if(this.value==data.loteen)
+this.setAttribute("selected","true");
+});
+                $('#crud-modal').modal('show');
             })
 
         });

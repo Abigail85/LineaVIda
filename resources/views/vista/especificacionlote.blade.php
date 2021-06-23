@@ -1,6 +1,6 @@
 @extends('vista.plantilla')
 @section('linkboton')
-<a href="javascript:void(0)" id="nuevoespecificacionlote" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#crearModal"><i class="fas fa-download fa-sm text-white-50"></i> Nueva Especificación</a>
+<a href="javascript:void(0)" id="nuevaespecificacionlote" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#crearEditarModal"><i class="fas fa-download fa-sm text-white-50"></i> Nueva Especificación</a>
 @endsection
 
 
@@ -32,8 +32,8 @@ Especificaciones de Lote
                         <th>XL</th>
                         <th>2XL</th>
                         <th>3XL</th>
-                        <th>Cantidad</th>
-                    </tr>
+                        <th>Cantidad Total</th>
+                    </tr> 
                 </thead>
 
                 <tbody>
@@ -61,13 +61,13 @@ $especificacionlote->cantidad3xl}}</td>
                         <td class=" bg-gray-200" style="padding-left: 1.75rem;">
                             <div class="row">
 
-                                <a href="#" class="btn btn-success btn-circle btn-sm editar" data-id="{{ $especificacionlote-> idLote}}" data-toggle="modal" data-target="#editModal">
+                                <a href="#" class="btn btn-success btn-circle btn-sm editar" data-id="{{ $especificacionlote-> idEspecificacionLote}}" data-toggle="modal" data-target="#crearEditarModal">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-warning btn-circle btn-sm detalle" data-id="{{ $especificacionlote-> idLote}}" data-toggle="modal" data-target="#detallesModal">
+                                <a href="#" class="btn btn-warning btn-circle btn-sm detalle" data-id="{{ $especificacionlote-> idEspecificacionLote}}" data-toggle="modal" data-target="#detallesModal">
                                     <i class="fas fa-search"></i>
                                 </a>
-                                <a href="#" class="btn btn-danger btn-circle btn-sm eliminar" data-id="{{ $especificacionlote-> idLote}}" data-toggle="modal" data-target="#eliminarModal">
+                                <a href="#" class="btn btn-danger btn-circle btn-sm eliminar" data-id="{{ $especificacionlote-> idEspecificacionLote}}" data-toggle="modal" data-target="#eliminarModal">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </div>
@@ -112,73 +112,24 @@ $especificacionlote->cantidad3xl}}</td>
 </div>
 
 
-<!-- Modal Editar-->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar Especificación</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!--         campos              -->
-                <div class="p-5">
-                    <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">Datos del Especificación</h1>
-                    </div>
-                    <form class="user" action="{{ route('especificacionlotes.store') }}" method="post">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                        <input type="hidden" name="operacion" value="editar"></input>
-                        <div class="form-group">
-                            <div class="">
-                                <label for="txtnit">Nit</label>
-                                <input type="number" class="form-control form-control-user" id="txtnit" maxlength="15" name="txtnit" placeholder="Nit">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="">
-                                <label for="txtNombre">Nombre</label>
-                                <input type="text" class="form-control form-control-user" id="txtNombre" name="txtNombre" placeholder="Nombre">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtDireccion">Direccion</label>
-                            <input type="text" class="form-control form-control-user" id="txtDireccion" name="txtDireccion" placeholder="Dirección">
-                        </div>
 
-                        <div class="form-group">
+<!-- Modal Crear Editar Nueva Especificación-->
+<!-- 
+                        idEspecificacionLotetxt
+                        idLoteselect
+                        Colorselect
+                        XXStxt
+                        XStxt
+                        Stxt
+                        Mtxt
+                        Ltxt
+                        XLtxt
+                        2XLtxt
+                        3XLtxt
+ -->
 
-                            <label for="txtTelefono">Teléfono</label>
-                            <input type="number" class="form-control form-control-user" id="txtTelefono" name="txtTelefono" placeholder="Teléfono">
 
-                        </div>
-                        <div class="form-group">
-
-                            <label for="txtNombrePersonaCargo">Encargada de Producción</label>
-                            <input type="text" class="form-control form-control-user" id="txtNombrePersonaCargo" name="txtNombrePersonaCargo" placeholder="Nombre">
-
-                        </div>
-
-                        <button type="submit" id="btnguardar" class="btn btn-primary btn-user btn-block">
-                            Actualizar
-                        </button>
-                        <button class="btn btn-secondary btn-user btn-block" type="button" data-dismiss="modal">Cancelar</button>
-
-                    </form>
-                </div>
-                <!--         campos              -->
-            </div>
-            <!--<div class="modal-footer">
-                </div>-->
-        </div>
-    </div>
-</div>
-
-<!-- Modal Crear Nueva Especificación-->
-
-<div class="modal fade" id="crearModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="crearEditarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -195,42 +146,101 @@ $especificacionlote->cantidad3xl}}</td>
                     </div>
                     <form class="user" id="crearespecificacionlote" action="{{ route('especificacionlotes.store') }}" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                        <input type="hidden" name="operacion" value="crear"></input>
+                        <input type="hidden" id='operacion' name="operacion" value=""></input>
                         <div class="form-group">
                             <div class="">
-                                <label for="txtnit">Nit</label>
-                                <input type="number" class="form-control form-control-user" id="txtnit" maxlength="15" name="txtnit" placeholder="Nit">
+                                <label for="idEspecificacionLotetxt">Id Especificación</label>
+                                <input type="text" class="form-control form-control-user" id="idEspecificacionLotetxt" maxlength="15" name="idEspecificacionLotetxt" placeholder="Id Especificación" readonly>
                             </div>
                         </div>
+
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="idLoteselect">Id Lote:</label>
+                            </div>
+                            <select class="custom-select  " id="idLoteselect" name="idLoteselect">
+                                @foreach($lotes as $lote)
+                                <option value="{{$lote->idLote}}">{{$lote->idLote}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="Colorselect">Color:</label>
+                            </div>
+                            <select class="custom-select  " id="Colorselect" name="Colorselect">
+                                @foreach($colores as $color)
+                                <option value="{{$color->idColor}}">{{$color->color}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <div class="">
-                                <label for="txtNombre">Nombre</label>
-                                <input type="text" class="form-control form-control-user" id="txtNombre" name="txtNombre" placeholder="Nombre">
+                                <label for="cantidadXXStxt">Cantidad XXS:</label>
+                                <input type="number" class="form-control form-control-user" id="cantidadXXStxt" name="cantidadXXStxt" placeholder="Cantidad XXS" value="0" min="0">
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <label for="txtDireccion">Direccion</label>
-                            <input type="text" class="form-control form-control-user" id="txtDireccion" name="txtDireccion" placeholder="Dirección">
+                            <div class="">
+                                <label for="cantidadXStxt">Cantidad XS:</label>
+                                <input type="number" class="form-control form-control-user" id="cantidadXStxt" name="cantidadXStxt" placeholder="Cantidad XS" value="0" min="0">
+                            </div>
                         </div>
 
                         <div class="form-group">
-
-                            <label for="txtTelefono">Teléfono</label>
-                            <input type="number" class="form-control form-control-user" id="txtTelefono" name="txtTelefono" placeholder="Teléfono">
-
+                            <div class="">
+                                <label for="cantidadStxt">Cantidad S:</label>
+                                <input type="number" class="form-control form-control-user" id="cantidadStxt" name="cantidadStxt" placeholder="Cantidad S" value="0" min="0">
+                            </div>
                         </div>
+
                         <div class="form-group">
-
-                            <label for="txtNombrePersonaCargo">Nombre encargada de producción</label>
-                            <input type="text" class="form-control form-control-user" id="txtNombrePersonaCargo" name="txtNombrePersonaCargo" placeholder="Nombre">
-
+                            <div class="">
+                                <label for="cantidadMtxt">Cantidad M:</label>
+                                <input type="number" class="form-control form-control-user" id="cantidadMtxt" name="cantidadMtxt" placeholder="Cantidad M" value="0" min="0">
+                            </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="">
+                                <label for="cantidadLtxt">Cantidad L:</label>
+                                <input type="number" class="form-control form-control-user" id="cantidadLtxt" name="cantidadLtxt" placeholder="Cantidad L" value="0" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="">
+                                <label for="cantidadXLtxt">Cantidad XL:</label>
+                                <input type="number" class="form-control form-control-user" id="cantidadXLtxt" name="cantidadXLtxt" placeholder="Cantidad XL" value="0" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="">
+                                <label for="cantidad2XLtxt">Cantidad 2XL:</label>
+                                <input type="number" class="form-control form-control-user" id="cantidad2XLtxt" name="cantidad2XLtxt" placeholder="Cantidad 2XL" value="0" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="">
+                                <label for="cantidad3XLtxt">Cantidad 3XL:</label>
+                                <input type="number" class="form-control form-control-user" id="cantidad3XLtxt" name="cantidad3XLtxt" placeholder="Cantidad 3XL" value="0" min="0">
+                            </div>
+                        </div>
+                        
 
                         <button type="submit" id="btnguardar" class="btn btn-primary btn-user btn-block">
                             Guardar
                         </button>
                         <button class="btn btn-secondary btn-user btn-block" type="button" data-dismiss="modal">Cancelar</button>
-
+                 
+                      
                     </form>
                 </div>
                 <!--         campos              -->
@@ -260,33 +270,71 @@ $especificacionlote->cantidad3xl}}</td>
                     <form class="user">
                         <div class="form-group">
                             <div class="">
-                                <label for="txtnitdetalles">Nit</label>
-                                <input type="text" class="form-control form-control-user" id="txtnitdetalles" name="txtnitdetalles" placeholder="Nit" value="89456156788-2" readonly="readonly">
+                                <label for="txtdetalleidEspecificacionLote">Id Especificación:</label>
+                                <input type="text" class="form-control form-control-user" id="txtdetalleidEspecificacionLote" name="txtdetalleidEspecificacionLote" placeholder="Id especificación lote" value="" readonly="readonly">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="">
-                                <label for="txtNombredetalles">Nombre</label>
-                                <input type="text" class="form-control form-control-user" id="txtNombredetalles" name="txtNombredetalles" placeholder="Nombre" value="Coltejer" readonly="readonly">
+                                <label for="txtdetalleidLote">Id Lote:</label>
+                                <input type="text" class="form-control form-control-user" id="txtdetalleidLote" name="txtdetalleidLote" placeholder="Id lote" value="" readonly="readonly">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="txtDirecciondetalles">Direccion</label>
-                            <input type="text" class="form-control form-control-user" id="txtDirecciondetalles" name="txtDirecciondetalles" placeholder="Dirección" value="Cl. 52 #42, Medellín, Antioquia" readonly="readonly">
-                        </div>
-
-                        <div class="form-group">
-
-                            <label for="txtTelefonodetalles">Teléfono</label>
-                            <input type="text" class="form-control form-control-user" id="txtTelefonodetalles" name="txtTelefonodetalles" placeholder="Teléfono" value="(574) 375 75 00" readonly="readonly">
-
+                            <div class="">
+                                <label for="txtdetalleColor">Id Color:</label>
+                                <input type="text" class="form-control form-control-user" id="txtdetalleColor" name="txtdetalleColor" placeholder="Color" value="" readonly="readonly">
+                            </div>
                         </div>
                         <div class="form-group">
-
-                            <label for="txtNombrePersonaCargodetalles">Nombre de la encargada de producción</label>
-                            <input type="text" class="form-control form-control-user" id="txtNombrePersonaCargodetalles" name="txtNombrePersonaCargodetalles" placeholder="Nombre" value="Isabel" readonly="readonly">
-
+                            <div class="">
+                                <label for="txtdetallecantidadxxs">Cantidad XXS:</label>
+                                <input type="text" class="form-control form-control-user" id="txtdetallecantidadxxs" name="txtdetallecantidadxxs" placeholder="" value="" readonly="readonly">
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <div class="">
+                                <label for="txtdetallecantidadxs">Cantidad XS:</label>
+                                <input type="text" class="form-control form-control-user" id="txtdetallecantidadxs" name="txtdetallecantidadxs" placeholder="" value="" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <label for="txtdetallecantidads">Cantidad S:</label>
+                                <input type="text" class="form-control form-control-user" id="txtdetallecantidads" name="txtdetallecantidads" placeholder="" value="" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <label for="txtdetallecantidadm">Cantidad M:</label>
+                                <input type="text" class="form-control form-control-user" id="txtdetallecantidadm" name="txtdetallecantidadm" placeholder="" value="" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <label for="txtdetallecantidadl">Cantidad L:</label>
+                                <input type="text" class="form-control form-control-user" id="txtdetallecantidadl" name="txtdetallecantidadl" placeholder="" value="" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <label for="txtdetallecantidadxl">Cantidad XL:</label>
+                                <input type="text" class="form-control form-control-user" id="txtdetallecantidadxl" name="txtdetallecantidadxl" placeholder="" value="" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <label for="txtdetallecantidad2xl">Cantidad 2XL:</label>
+                                <input type="text" class="form-control form-control-user" id="txtdetallecantidad2xl" name="txtdetallecantidad2xl" placeholder="" value="" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <label for="txtdetallecantidad3xl">Cantidad 3XL:</label>
+                                <input type="text" class="form-control form-control-user" id="txtdetallecantidad3xl" name="txtdetallecantidad3xl" placeholder="" value="" readonly="readonly">
+                            </div>
+                        </div>
+                        
 
 
                         <button class="btn btn-primary btn-user btn-block" id="btn-cerrar" type="button" data-dismiss="modal">Cerrar Detalles</button>
@@ -307,17 +355,17 @@ $especificacionlote->cantidad3xl}}</td>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Realmente quieres eliminar el especificacionlote?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Realmente quieres eliminar la especificacion de lote?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Selecciona "Eliminar Especificación" a continuación si deseas borrar el especificacionlote.</div>
+            <div class="modal-body">Selecciona "Eliminar Especificación" a continuación si deseas borrar la especificacion.</div>
             <div class="modal-footer">
                 <form class="user" action="{{ route('especificacionlotes.eliminar') }}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
 
-                    <input type="hidden" class="form-control form-control-user" id="txtniteliminar" name="txtniteliminar" placeholder="Nit" value="89456156788-2" readonly="readonly">
+                    <input type="hidden" class="form-control form-control-user" id="txtidespecificacioneliminar" name="txtidespecificacioneliminar" readonly="readonly">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary" id="botoneliminar">Eliminar Especificación</button>
                 </form>
@@ -331,34 +379,47 @@ $especificacionlote->cantidad3xl}}</td>
 <script>
     $(document).ready(function() {
 
-        /* cuando se presiona el botón de nuevo especificacionlote */
-        $('#nuevoespecificacionlote').click(function() {
+
+      /*actualiza valor de idLote del modal al cambiar el select idLoteSelect
+      $('#idLoteselect').on('change', function() {
+            $('').val($('#selectproveedor').val());
+        });*/
+
+        /* cuando se presiona el botón de nueva especificacionlote */
+        $('#nuevaespecificacionlote').click(function() {
             $('#btnguardar').val("crear-especificacionlote");
             $('#especificacionlote').trigger("reset");
-            $('operacion').val("crear");
+            $('#operacion').val("crear");
             $('#crud-modal').modal('show');
-            $('#txtnit').prop('readonly', '');
+            $('#idEspecificacionLotetxt').prop('readonly', '');
         });
 
         /* Editar especificacionlote */
         $('body').on('click', '.editar', function() {
             var especificacionlote_id = $(this).data('id');
             $.get('especificacionlotes/' + especificacionlote_id + '/edit', function(data) {
-                $('operacion').val("editar");
+                $('#operacion').val("editar");
                 $('#btn-update').val("Update");
                 $('#btn-save').prop('disabled', false);
                 $('#btn-save').prop('hidden', false);
                 $('#crud-modal').modal('show');
-                $('#txtnit').val(data.idNitProveedor);
-                $('#txtNombre').val(data.nombreProveedor);
-                $('#txtDireccion').val(data.direccion);
-                $('#txtTelefono').val(data.telefono);
-                $('#txtNombrePersonaCargo').val(data.encargadoProveedor);
-                $('#txtnit').prop('readonly', 'readonly');
-                $('#txtNombre').prop('readonly', '');
-                $('#txtDireccion').prop('readonly', '');
-                $('#txtTelofono').prop('readonly', '');
-                $('#txtNombrePersonaCargo').prop('readonly', '');
+
+
+                $('#idEspecificacionLotetxt').val(data.idEspecificacionLote);
+                $('#idLoteselect').val(data.idLote);
+                $('#Colorselect').val(data.idColor);
+                
+                $('#cantidadXXStxt').val(data.cantidadxxs);
+                $('#cantidadXStxt').val(data.cantidadxs);
+                $('#cantidadStxt').val(data.cantidads);
+                $('#cantidadMtxt').val(data.cantidadm);
+                $('#cantidadLtxt').val(data.cantidadl);
+                $('#cantidadXLtxt').val(data.cantidadxl);
+                $('#cantidad2XLtxt').val(data.cantidad2xl);
+                $('#cantidad3XLtxt').val(data.cantidad3xl);
+                
+                $('#idEspecificacionLotetxt').prop('readonly', 'readonly');
+    
             })
         });
         /* Mostrar especificacionlote*/
@@ -366,16 +427,32 @@ $especificacionlote->cantidad3xl}}</td>
             var especificacionlote_id = $(this).data('id');
             $.get('especificacionlotes/' + especificacionlote_id + '/show', function(data) {
                 $('#detallesModal').modal('show');
-                $('#txtnitdetalles').val(data.idNitProveedor);
-                $('#txtNombredetalles').val(data.nombreProveedor);
-                $('#txtDirecciondetalles').val(data.direccion);
-                $('#txtTelefonodetalles').val(data.telefono);
-                $('#txtNombrePersonaCargodetalles').val(data.encargadoProveedor);
-                $('#txtnitdetalles').prop('readonly', 'readonly');
-                $('#txtNombredetalles').prop('readonly', 'readonly');
-                $('#txtDirecciondetalles').prop('readonly', 'readonly');
-                $('#txtTelefonodetalles').prop('readonly', 'readonly');
-                $('#txtNombrePersonaCargodetalles').prop('readonly', 'readonly');
+                $('#txtdetalleidEspecificacionLote').val(data.idEspecificacionLote);
+                $('#txtdetalleidLote').val(data.idLote);
+                $('#txtdetalleColor').val(data.idColor);
+                $('#txtdetallecantidadxxs').val(data.cantidadxxs);
+                $('#txtdetallecantidadxs').val(data.cantidadxs);
+                $('#txtdetallecantidads').val(data.cantidads);
+                $('#txtdetallecantidadm').val(data.cantidadm);
+                $('#txtdetallecantidadl').val(data.cantidadl);
+                $('#txtdetallecantidadxl').val(data.cantidadxl);
+                $('#txtdetallecantidad2xl').val(data.cantidad2xl);
+                $('#txtdetallecantidad3xl').val(data.cantidad3xl);
+
+                /*
+idEspecificacionLote
+idLote
+idColor
+cantidadxxs
+cantidadxs
+cantidads
+cantidadm
+cantidadl
+cantidadxl
+cantidad2xl
+cantidad3xl
+*/
+
             })
         });
 
@@ -383,7 +460,7 @@ $especificacionlote->cantidad3xl}}</td>
         $('body').on('click', '.eliminar', function() {
             var especificacionlote_id = $(this).data("id");
 
-            $('#txtniteliminar').val(especificacionlote_id);
+            $('#txtidespecificacioneliminar').val(especificacionlote_id);
 
 
         });
