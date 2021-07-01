@@ -12,6 +12,17 @@ use Validator;
 
 class FacturaController extends Controller
 {
+
+
+	      /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 	/**
 	 * Muestra el listado de facturas.
 	 *

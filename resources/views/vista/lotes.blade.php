@@ -25,7 +25,7 @@ Lotes
                         <th>Fecha ingreso</th>
                         <th>Fecha inicio</th>
                         <th>Fecha entrega</th>
-                        <th>Cantidad por color y talla</th>
+                        <th>Cantidad por color y talla (Especificaciones)</th>
                         <th>Cantidad total</th>
                         <th>Descripción</th>
                         <th>Lote en:</th>

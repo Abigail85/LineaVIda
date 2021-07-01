@@ -11,12 +11,15 @@ use Validator;
 
 class LoteController extends Controller
 {
-	/*        'idLote',
-    'idNitProveedor',
-    'fechaIngresoLote',
-    'descripcionLotes',
-    'cantidadTotalLotes'
-*/
+      /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 	/**
 	 * Muestra el listado de lotes.
 	 *
@@ -127,19 +130,6 @@ class LoteController extends Controller
 		return Response::json($lote);
 	}
 
-
-	/**
-	 * Elimina el proveedor especificado de la tabla proveedor.
-	 *
-	 * @param int $id
-	 * @return \Illuminate\Http\Response
-	 */
-
-	public function destroy($id)
-	{
-		$prov = proveedor::where('idNitProveedor', $id)->delete();
-		return Response::json($prov);
-	}
 
 
 	public function eliminar(Request $request)

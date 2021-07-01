@@ -10,6 +10,17 @@ use Validator;
 class ProveedorController extends Controller
 {
 
+
+	      /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
 	* Muestra el listado de proveedores.
 	*
@@ -109,20 +120,6 @@ class ProveedorController extends Controller
 		$where = array('idNitProveedor' => $id);
 		$proveedor = proveedor::where($where)->first();
 		return Response::json($proveedor);
-	}
-
-    
-	/**
-	* Elimina el proveedor especificado de la tabla proveedor.
-	*
-	* @param int $id
-	* @return \Illuminate\Http\Response
-	*/
-
-	public function destroy($id)
-	{
-		$prov = proveedor::where('idNitProveedor',$id)->delete();
-		return Response::json($prov);
 	}
 
     

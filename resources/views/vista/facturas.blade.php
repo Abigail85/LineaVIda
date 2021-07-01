@@ -169,23 +169,69 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <div class="">
+                                    <label for="txtcolordetalles">Color</label>
+                                    <input type="text" class="form-control form-control-user"  id="txtcolordetalles"  name="txtcolordetalles" placeholder="Color" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label for="txtcantidadxxsdetalles">XXS</label>
+                                    <input type="text" class="form-control form-control-user"  id="txtcantidadxxsdetalles"  name="txtcantidadxxsdetalles" placeholder="0" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label for="txtcantidadxsdetalles">XS</label>
+                                    <input type="text" class="form-control form-control-user"  id="txtcantidadxsdetalles"  name="txtcantidadxsdetalles" placeholder="0" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label for="txtcantidadsdetalles">S</label>
+                                    <input type="text" class="form-control form-control-user"  id="txtcantidadsdetalles"  name="txtcantidadsdetalles" placeholder="0" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label for="txtcantidadmdetalles">M</label>
+                                    <input type="text" class="form-control form-control-user"  id="txtcantidadmdetalles"  name="txtcantidadmdetalles" placeholder="0" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label for="txtcantidadldetalles">L</label>
+                                    <input type="text" class="form-control form-control-user"  id="txtcantidadldetalles"  name="txtcantidadldetalles" placeholder="0" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label for="txtcantidadxldetalles">XL</label>
+                                    <input type="text" class="form-control form-control-user"  id="txtcantidadxldetalles"  name="txtcantidadxldetalles" placeholder="0" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label for="txtcantidad2xldetalles">2XL</label>
+                                    <input type="text" class="form-control form-control-user"  id="txtcantidad2xldetalles"  name="txtcantidad2xldetalles" placeholder="0" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label for="txtcantidad3xldetalles">3XL</label>
+                                    <input type="text" class="form-control form-control-user"  id="txtcantidad3xldetalles"  name="txtcantidad3xldetalles" placeholder="0" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txttotaldetalles">Total</label>
+                                <input type="text" class="form-control form-control-user"  id="txttotaldetalles"  name="txttotaldetalles" placeholder="Total Prendas" readonly="readonly">
+                            </div>
+                            <div class="form-group">
                                 <label for="txtValordetalles">Valor</label>
                                 <input type="text" class="form-control form-control-user"  id="txtValordetalles"  name="txtValordetalles" placeholder="Valor Factura" readonly="readonly">
                             </div>
 
-                            <div class="form-group">
-
-                                <label for="txtTelefonodetalles">Teléfono</label>
-                                <input type="text" class="form-control form-control-user"  id="txtTelefonodetalles"  name="txtTelefonodetalles" placeholder="Teléfono" value="(574) 375 75 00" readonly="readonly">
-
-                            </div>
-                            <div class="form-group">
-
-                                <label for="txtidLotePersonaCargodetalles">Nombre de la encargada de producción</label>
-                                <input type="text" class="form-control form-control-user"  id="txtidLotePersonaCargodetalles"  name="txtidLotePersonaCargodetalles" placeholder="Nombre" value="Isabel" readonly="readonly">
-
-                            </div>
-
+                            
 
                             <button class="btn btn-primary btn-user btn-block" id="btn-cerrar" type="button" data-dismiss="modal">Cerrar Detalles</button>
 
