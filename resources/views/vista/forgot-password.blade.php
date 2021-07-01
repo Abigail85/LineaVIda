@@ -44,7 +44,7 @@
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Escribe tu Usuario...">
                                         </div>
-                                        <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                        <a href="{{ route('login') }}" class="btn btn-primary btn-user btn-block">
                                             Reiniciar Contraseña
                                         </a>
                                     </form>
@@ -53,7 +53,7 @@
                                         <a class="small" href="register.html">Crear cuenta de usuario!</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="login.html">Ya tienes una cuenta? Ingresa aquí!</a>
+                                        <a class="small" href="{{ route('login') }}">Ya tienes una cuenta? Ingresa aquí!</a>
                                     </div>
                                 </div>
                             </div>

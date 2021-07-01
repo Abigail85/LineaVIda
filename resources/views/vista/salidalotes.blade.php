@@ -365,7 +365,7 @@
                 <div class="modal-body">Selecciona "Salir" a continuación si deseas cerrar la sesión.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="login.html">Salir</a>
+                    <a class="btn btn-primary" href="{{ route('login') }}">Salir</a>
                 </div>
             </div>
         </div>
@@ -415,7 +415,7 @@
                             </div>
 
 
-                            <a href="login.html" class="btn btn-primary btn-user btn-block">
+                            <a href="{{ route('login') }}" class="btn btn-primary btn-user btn-block">
                             Actualizar
                             </a>
                             <button class="btn btn-secondary btn-user btn-block" type="button" data-dismiss="modal">Cancelar</button>
@@ -472,7 +472,7 @@
                                 <input type="number" class="form-control form-control-user" id="txtvalor" placeholder="2400000">
                             </div>
 
-                            <a href="login.html" class="btn btn-primary btn-user btn-block">
+                            <a href="{{ route('login') }}" class="btn btn-primary btn-user btn-block">
                             Guardar
                             </a>
                             <button class="btn btn-secondary btn-user btn-block" type="button" data-dismiss="modal">Cancelar</button>
