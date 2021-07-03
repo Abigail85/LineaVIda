@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-06-2021 a las 03:05:18
+-- Tiempo de generación: 03-07-2021 a las 19:51:33
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.6
 
@@ -96,22 +96,23 @@ CREATE TABLE `especificacionlote` (
 --
 
 INSERT INTO `especificacionlote` (`idEspecificacionLote`, `idLote`, `idColor`, `cantidadxxs`, `cantidadxs`, `cantidads`, `cantidadm`, `cantidadl`, `cantidadxl`, `cantidad2xl`, `cantidad3xl`) VALUES
-(1, 720008, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-(2, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(3, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(4, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(5, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(6, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(7, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+(1, 720008, 2, 2, 3, 1, 1, 1, 1, 1, 1),
+(2, 100, 1, 3, 0, 0, 0, 0, 0, 0, 0),
+(3, 720008, 1, 0, 0, 5, 0, 0, 0, 0, 0),
+(4, 987, 1, 3, 0, 0, 0, 0, 0, 0, 0),
+(5, 720008, 1, 0, 0, 0, 0, 6, 0, 0, 0),
+(7, 3145, 1, 0, 0, 0, 0, 0, 0, 0, 0),
 (8, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(9, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(10, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(11, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(12, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+(9, 89456, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+(10, 35615, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+(11, 3145, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+(12, 99, 1, 9, 10, 112, 0, 44, 0, 52, 0),
 (13, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
 (14, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
 (15, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(16, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+(16, 720008, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+(448, 99, 5, 13, 9, 11, 9, 15, 10, 12, 14),
+(7896, 100, 6, 10, 3, 5, 5, 4, 6, 7, 4);
 
 -- --------------------------------------------------------
 
@@ -121,9 +122,17 @@ INSERT INTO `especificacionlote` (`idEspecificacionLote`, `idLote`, `idColor`, `
 
 CREATE TABLE `factura` (
   `nroFactura` int(11) NOT NULL,
-  `idLotes` bigint(20) NOT NULL,
+  `idLote` bigint(20) NOT NULL,
   `valor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`nroFactura`, `idLote`, `valor`) VALUES
+(258, 99, 7581),
+(12315, 100, 500000);
 
 -- --------------------------------------------------------
 
@@ -135,7 +144,7 @@ CREATE TABLE `lote` (
   `idLote` bigint(20) NOT NULL,
   `idNitProveedor` bigint(20) NOT NULL,
   `fechaIngresoLote` date DEFAULT current_timestamp(),
-  `fechaInicioLote` date DEFAULT current_timestamp(),
+  `fechaInicioLote` date DEFAULT NULL,
   `fechaEntregaLote` date DEFAULT NULL,
   `descripcionLotes` text NOT NULL,
   `loteen` varchar(15) NOT NULL,
@@ -147,10 +156,11 @@ CREATE TABLE `lote` (
 --
 
 INSERT INTO `lote` (`idLote`, `idNitProveedor`, `fechaIngresoLote`, `fechaInicioLote`, `fechaEntregaLote`, `descripcionLotes`, `loteen`, `cantidadTotalLotes`) VALUES
-(99, 89456, '2021-02-02', '2021-02-02', '2021-02-02', 'camisamangacorta', 'Produccion', 70),
+(99, 89456, '2021-02-02', '2021-02-02', '2021-07-02', 'camisamangacorta', 'Entregado', 70),
 (100, 79654789, '2021-02-02', '2021-02-02', '2021-02-02', 'camisamangacorta', 'Produccion', 70),
+(987, 79654789, '2021-06-19', '2021-06-19', '2021-06-20', 'Camisa manga larga minicuadros', 'Bodega', NULL),
 (3145, 123456, '2021-06-19', '2021-06-19', '2021-06-20', 'camisamangacorta cuello en v', 'Bodega', NULL),
-(35615, 4576, '2021-06-19', '2021-06-19', '2021-06-20', 'camisamangacorta cuello en v', 'Bodega', NULL),
+(35615, 4576, '2021-06-19', '2021-06-19', '2021-06-20', 'camisamangacorta cuello en v', 'Terminacion', NULL),
 (89456, 889156400, '2021-06-19', '2021-06-19', '2021-06-20', 'camisamangacorta cuello en v', 'Bodega', NULL),
 (720008, 99999999999999, '2021-01-01', '2021-02-02', '2021-02-02', 'Camisa manga larga minicuadros', 'Entregado', 50);
 
@@ -187,6 +197,13 @@ CREATE TABLE `password_resets` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('javier_h_n@hotmail.com', '$2y$10$s7SfL/oZwioiwI4fhAs72Ot4/9CQkszOyw35/i6r3luf204IFVfoy', '2021-06-27 19:34:49');
+
 -- --------------------------------------------------------
 
 --
@@ -208,38 +225,38 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`idNitProveedor`, `nombreProveedor`, `telefono`, `direccion`, `encargadoProveedor`, `created_at`, `updated_at`) VALUES
-(1, 'pepe ganga', '7562481', 'afs', 'javier', NULL, NULL),
+(1, 'pepe ganga', '7562481', 'calle 22d # 82-37', 'martha', NULL, '2021-06-23 20:50:02'),
 (4576, 'creaciones alejandra', '4246589', 'calle 68 # 72-15', 'alejandra', NULL, NULL),
 (12345, 'sharpie ltda', '4246589', 'calle 12 sur #20-65', 'cecilia', '2021-05-29 04:12:28', '2021-05-29 04:12:28'),
 (89456, 'alkosto s.a.', '435325', 'cra 30 #18-56', 'milena', NULL, NULL),
-(123456, 'everest creaciohnes', '578842759', 'cra 30 #18-56', 'ernesto mancera', NULL, NULL),
+(123456, 'everest creaciohnes', '578842759', 'cra 30 #18-56', 'ernesto', NULL, '2021-06-28 02:06:44'),
 (9858467, 'mario s.a.', '435325', 'cra 30 #18-56', 'mario', NULL, NULL),
 (12689156, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
 (79627887, 'buda-pest ltda', '7225495', 'carrera 13 # 40-67', 'nestor', NULL, NULL),
 (79654789, 'nutesa', '56786436', 'transversal 49 sur # 18-09', 'carlos', NULL, NULL),
-(98584678, 'unal', '84564853156', 'Carrera12 # 34-65', 'lina', '2021-06-18 11:49:13', '2021-06-18 11:49:13'),
+(98584678, 'UNION S.A.', '84564853156', 'Carrera12 # 34-65', 'lina', '2021-06-18 11:49:13', '2021-06-23 20:48:34'),
 (156518966, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'liliana', NULL, NULL),
-(618594156, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
+(618594156, 'Coltextil S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, '2021-06-23 20:38:42'),
 (811031385, 'Moda Avanzada S.A', '5120514', 'Centro de la moda centro', 'isabel', NULL, NULL),
-(856894567, 'roger', '8765985', 'diagonal53 #90-32', 'rogelio', NULL, NULL),
+(856894567, 'Roger\'s LTDA', '8765985', 'diagonal53 #90-32', 'rogelio', NULL, '2021-06-23 20:49:10'),
 (889156400, 'confecciones la excelencia', '7562481', 'Carrera12 # 34-65', 'rodrigo', NULL, NULL),
-(889156401, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
-(889156402, 'Codep2 S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, '2021-06-18 11:50:21'),
-(889156403, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
-(889156404, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
-(889156405, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
-(889156478, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
-(889156480, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
-(889156481, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
-(889156486, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
-(985489165, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
+(889156401, 'Nacional de Confecciones S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, '2021-06-23 20:39:29'),
+(889156402, 'Nueva Moda S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, '2021-06-23 20:40:20'),
+(889156403, 'Giorgy S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
+(889156404, 'Naturals S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
+(889156405, 'Revolution S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
+(889156478, 'Creaciones Excelsas S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
+(889156480, 'KMO S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
+(889156481, 'Relevant S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
+(889156486, 'Bahia S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
+(985489165, 'Prescot S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
 (987654321, 'nicolas', '2957824', 'calle 12 sur #20-65', 'nicolas', NULL, NULL),
-(999999999, 'dd', '4246589', 'calle 12 sur #20-65', 'mario', NULL, NULL),
-(2147483647, 'Codep S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
-(9999999999, 'dd', '4246589', 'calle 12 sur #20-65', 'mario', NULL, NULL),
-(99999999999, 'dd', '4246589', 'calle 12 sur #20-65', 'mario', NULL, NULL),
-(999999999999, 'dd', '4246589', 'calle 12 sur #20-65', 'mario', NULL, NULL),
-(99999999999999, 'drake industries', '2953136', 'cra 30 #18-56', 'milena', NULL, '2021-05-28 21:19:21');
+(999999999, 'Dany Creaciones', '4246589', 'calle 12 sur #20-65', 'mario', NULL, NULL),
+(2147483647, 'Chewbaka S.A.', '7562481', 'Carrera12 # 34-65', 'jorge', NULL, NULL),
+(9999999999, 'Dorian\'s', '4246589', 'calle 12 sur #20-65', 'mario', NULL, NULL),
+(99999999999, 'Bening Creaciones', '4246589', 'calle 12 sur #20-65', 'mario', NULL, NULL),
+(999999999999, 'Ropa a la Moda', '4246589', 'calle 12 sur #20-65', 'mario', NULL, NULL),
+(99999999999999, 'Quick Creaciones S.A.', '2953136', 'cra 30 #18-56', 'milena', NULL, '2021-05-28 21:19:21');
 
 -- --------------------------------------------------------
 
@@ -279,6 +296,15 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'javier', 'javier_h_n@hotmail.com', '$2y$10$kYFVAnMgjbBYWshBvyilmeUVc6R.PjlfIGGZWwQHMQ6HZh0/aWlSa', 'p0rXMPaqR5yG3ml1CV32POr9xB3KKfwt6IvBKFm5CK3kF636xWxKlGlMnT31', '2021-06-27 19:31:13', '2021-06-27 19:31:13'),
+(2, 'jose', 'jose.zapata@gmail.com', '$2y$10$wmFchvm3VczkEKv2kb/e/e5.AgcXf0tABY/HkCmdqwSYY0Hs2fT.u', 'uLXKMfOE67KKJ1R5gJudoxaJedEJfYDoFPzlQFcySFNIYz9kj3XnmJUXrO7J', '2021-07-01 11:18:53', '2021-07-01 11:18:53'),
+(3, 'admin', 'admin@lineadevida.com', '$2y$10$yCpgMeKsgWJZjEoyfU9PeuT4opyCy/ViazgeXVox79TPKHXHWBkLy', 'EmPmCdJxQBPcjcMyz5iMfLCqSLIEUbgi2u6HDAIbvvAZUxlOIlhJv8GIiY7B', '2021-07-02 02:21:10', '2021-07-02 02:21:10');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -307,7 +333,7 @@ ALTER TABLE `especificacionlote`
 --
 ALTER TABLE `factura`
   ADD PRIMARY KEY (`nroFactura`),
-  ADD KEY `PK_idLotes` (`idLotes`);
+  ADD KEY `PK_idLotes` (`idLote`);
 
 --
 -- Indices de la tabla `lote`
@@ -367,13 +393,13 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT de la tabla `especificacionlote`
 --
 ALTER TABLE `especificacionlote`
-  MODIFY `idEspecificacionLote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idEspecificacionLote` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7897;
 
 --
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `nroFactura` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `nroFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12316;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -391,7 +417,7 @@ ALTER TABLE `talla`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -408,7 +434,7 @@ ALTER TABLE `especificacionlote`
 -- Filtros para la tabla `factura`
 --
 ALTER TABLE `factura`
-  ADD CONSTRAINT `PK_idLotes` FOREIGN KEY (`idLotes`) REFERENCES `lote` (`idLote`);
+  ADD CONSTRAINT `PK_idLotes` FOREIGN KEY (`idLote`) REFERENCES `lote` (`idLote`);
 
 --
 -- Filtros para la tabla `lote`

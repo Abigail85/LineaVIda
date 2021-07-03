@@ -185,14 +185,14 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <!-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Mi Perfil
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Configuración
-                                </a>
+                                </a> -->
                                 <a class="nav-link" href="{{ route('register') }}">
-                                    {{ __('Registrar Usuario') }}
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>{{ __('Registrar Usuario') }}
 
                                 </a>
 

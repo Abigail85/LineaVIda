@@ -74,6 +74,9 @@
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                     {{__('Registrar Usuario')}}
                                 </button>
+                                <a  class="btn btn-secondary btn-user btn-block" href="{{route('home')}}">
+                                    {{__('Volver')}}
+                                </a>
                                 <hr>
                                 <!--
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
@@ -88,7 +91,7 @@
                                 <a class="small" href="forgot-password.html">Olvidaste tu contraseña?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="{{route(login)}}">Ya tienes una cuenta de usuario? Ingresa Aquí!</a>
+                                <a class="small" href="{{route('login')}}">Ya tienes una cuenta de usuario? Ingresa Aquí!</a>
                             </div>
                         </div>
                     </div>
