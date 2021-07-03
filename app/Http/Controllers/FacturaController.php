@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use Response;
 
 use App\factura;
+use App\lote;
 use App\proveedor;
 use App\especificacionlote;
 use Validator;
+use PDF;
 
 class FacturaController extends Controller
 {
@@ -135,5 +137,31 @@ class FacturaController extends Controller
 
 		return redirect()->route('facturas.index')->with('success', $msg);
 		//return Response::json($prov);
+	}
+
+	public function pdf($id){
+		$where= array('idLote'=>$id);
+		$lote = lote::where($where)->first();
+		$especificaciones = especificacionlote::where($where)->get();
+		      // retreive all records from db
+			 // $data = Employee::all();
+
+			  // share data to view
+			  view()->share('lote',$lote);
+			  view()->share('especificaciones',$especificaciones);
+			  $pdf = PDF::loadView('vista/pdf/facturapdf', [$lote,$especificaciones])->setpaper('a3', 'landscape');
+		
+			  // download PDF file with download method
+			  return $pdf->download('factura.pdf');
+
+	}
+
+	public function facturahtml($id){
+		$where= array('idLote'=>$id);
+		$lote = lote::where($where)->first();
+		$especificaciones = especificacionlote::where($where)->get();
+		
+		return view('vista/pdf/facturapdf')->with(['lote'=>$lote,'especificaciones'=>$especificaciones]);
+		
 	}
 }

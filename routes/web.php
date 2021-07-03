@@ -57,3 +57,6 @@ Route::get('facturas/{id}/show/','FacturaController@show');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get("/facturapdf/{id}", ["as"=>"factura.pdf","uses"=>"FacturaController@pdf"]);
+Route::get("/facturahtml/{id}", ["as"=>"factura.html","uses"=>"FacturaController@facturahtml"]);

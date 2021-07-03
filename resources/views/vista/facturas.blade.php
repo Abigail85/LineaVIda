@@ -46,6 +46,10 @@
                                                     <a href="#" class="btn btn-danger btn-circle btn-sm eliminar" data-id="{{ $factura-> nroFactura}}" data-toggle="modal" data-target="#eliminarModal">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
+                                                    
+                                                    <a href="facturahtml/{{$factura->idLote}}" class="btn btn-primary btn-circle btn-sm vistaprevia" data-id="{{ $factura->idLote}}" target="_blank">
+                                                    <abbr title="Ver vista previa"><i class=" fas fa-print"></i></abbr>
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -67,24 +71,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!--  Modal Logout-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Realmente quieres cerrar sesión?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Selecciona "Salir" a continuación si deseas cerrar la sesión.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="{{ route('login') }}">Salir</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 
     <!-- Modal Crear Editar-->

@@ -8,6 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!-- <link rel="shortcut icon"  type="image/x-icon" href="{{ asset('static/img/gatito.ico') }}" /> -->
+    <!-- <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="{{ asset('static/img/favicon.ico') }}"> -->
+    <link rel="shortcut icon" href='../static/img/favicon.ico'>
+    <!-- <link rel="shortcut icon" href="/favicon.ico" /> -->
 
     <title>Confecciones Línea de Vida</title>
 
@@ -18,6 +22,7 @@
     <!-- Custom styles for this template-->
     <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
 
+   
 </head>
 
 <body id="page-top">
@@ -29,7 +34,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
                 <div class="sidebar-brand-icon rotate-n-10">
                     <!--<i class="fas fa-laugh-wink"></i>-->
                     <img src="static/img/logo.png" alt="" height="40px">
@@ -72,11 +77,11 @@
                         <a class="collapse-item" href="{{ route('especificacionlotes.index') }}">Gestionar Especificaciónes</a>
 
                     </div>
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <!-- <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Salida de lote:</h6>
                         <a class="collapse-item" href="salidalotes.html">Gestionar Salida de Lotes</a>
 
-                    </div>
+                    </div> -->
                 </div>
 
             </li>
@@ -127,7 +132,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
@@ -136,7 +141,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -171,9 +176,7 @@
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a>
                         </li>
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar Usuario') }}</a>
-                        </li>
+                     
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -188,6 +191,11 @@
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Configuración
                                 </a>
+                                <a class="nav-link" href="{{ route('register') }}">
+                                    {{ __('Registrar Usuario') }}
+
+                                </a>
+
 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -281,7 +289,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                                     document.getElementById('logout-form').submit();">{{ __('Salir') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
