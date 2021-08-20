@@ -48,7 +48,7 @@
                 <a id="delete-customer" data-id="{{ $customer->id }}" class="btn btn-danger delete-user">Delete</a>
             </form>
         </td>
-        </td>
+
     </tr>
     @endforeach
 
@@ -107,7 +107,7 @@
                     <div class="col-xs-10 col-sm-10 col-md-10 ">
                         @foreach($customers as $customer):
                         @if(true):
-                        
+
                         @endif
                         @endforeach
 

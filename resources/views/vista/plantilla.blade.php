@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- <link rel="shortcut icon"  type="image/x-icon" href="{{ asset('static/img/gatito.ico') }}" /> -->
-    <!-- <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="{{ asset('static/img/favicon.ico') }}"> -->
-    <link rel="shortcut icon" href='../static/img/favicon.ico'>
-    <!-- <link rel="shortcut icon" href="/favicon.ico" /> -->
+    <!-- <link rel="shortcut icon"  type="image/x-icon" href="{{ asset('static/img/taller.JPEG') }}" /> -->
+    <!-- <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="{{ asset('static/img/taller.JPEG') }}"> -->
+    <link rel="shortcut icon" href='../static/img/taller.JPEG'>
+    <!-- <link rel="shortcut icon" href="/img/taller.JEPG" />-->
 
     <title>Confecciones Línea de Vida</title>
 
@@ -22,7 +22,7 @@
     <!-- Custom styles for this template-->
     <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
 
-   
+
 </head>
 
 <body id="page-top">
@@ -38,6 +38,7 @@
                 <div class="sidebar-brand-icon rotate-n-10">
                     <!--<i class="fas fa-laugh-wink"></i>-->
                     <img src="static/img/logo.png" alt="" height="40px">
+
                 </div>
                 <div class="sidebar-brand-text mx-3">Confecciones Línea de Vida <sup></sup></div>
             </a>
@@ -50,6 +51,7 @@
                 <a class="nav-link" href="{{ route('home') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Inicio</span></a>
+
             </li>
 
             <!-- Divider -->
@@ -176,7 +178,7 @@
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a>
                         </li>
                         @else
-                     
+
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -297,9 +299,7 @@
             </div>
         </div>
     </div>
-
-
-    </div>
+    
 
     <style>
         /*Loading page*/
@@ -310,8 +310,8 @@
             width: 100%;
             height: 100%;
             z-index: 999999999;
-            /*background: url("{{ asset ('static/img/maquina de coser.gif' ) }} ") center no-repeat #fff;*/
-            background: url("{{ asset ('static/img/gato2.gif' ) }} ") center no-repeat #fff;
+            /*background: url("{{ asset ('static/img/taller.JPEG' ) }} ") center no-repeat #fff;*/
+            background: url("{{ asset ('static/img/taller.JPEG' ) }} ") center no-repeat #fff;
         }
 
         /*Loading page*/

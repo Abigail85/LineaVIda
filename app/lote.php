@@ -7,7 +7,7 @@ use App\proveedor;
 use App\especificacionlote;
 class lote extends Model
 {
-    
+
     protected $table="lote";
     protected $primaryKey = "idLote";
     public $timestamps = false;
@@ -26,7 +26,7 @@ class lote extends Model
     {
         return $this->belongsTo('App\proveedor','idNitProveedor','idNitProveedor');
     }
-    public function especificaciones()
+    public function especificacionlote()
     {
         return $this->hasMany('App\especificacionlote','idLote','idLote');
     }

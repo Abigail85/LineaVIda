@@ -143,7 +143,7 @@ INSERT INTO `factura` (`nroFactura`, `idLote`, `valor`) VALUES
 CREATE TABLE `lote` (
   `idLote` bigint(20) NOT NULL,
   `idNitProveedor` bigint(20) NOT NULL,
-  `fechaIngresoLote` date DEFAULT current_timestamp(),
+  `fechaIngresoLote` date DEFAULT NULL,
   `fechaInicioLote` date DEFAULT NULL,
   `fechaEntregaLote` date DEFAULT NULL,
   `descripcionLotes` text NOT NULL,

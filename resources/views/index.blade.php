@@ -46,6 +46,11 @@
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Inicio</span></a>
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Inicio</h1>
+                    <a href="public/static/img/taller.JPEG" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> </a>
+                </div>
             </li>
 
             <!-- Divider -->
@@ -190,14 +195,13 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading 
+                    <!-- Page Heading
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Inicio</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>-->
-
-                    <img src="img/sigmund--0w8N0QmfCI-unsplash.jpg" alt="" height="700px">
+                    <img src="img/taller.png" alt="" height="700px"/>
 
                 </div>
                 <!-- /.container-fluid -->
